@@ -1,4 +1,58 @@
 <%- include("partials/header") %>
 
-    <h1>Hello</h1>
+    <h1 style="text-align: center"> Input Restaurent </h1>
+    <div style="text-align: center">
+
+        <form action="/api/restaurents/" method="POST">
+            <div>
+                <input type="text" name="restro[name]" placeholder="Restaurent Name">
+                <input type="text" name="restro[location]" placeholder="Location">
+                <input type="text" name="restro[price]" placeholder="Price Range">
+                <!-- <textarea class="form-control" cols="100" name="restro[name]" placeholder="Add Restaurent"></textarea>
+                <textarea class="form-control" cols="100" name="restro[location]" placeholder="Add Restaurent"></textarea>
+                <textarea class="form-control" cols="100" name="restro[price]" placeholder="Add Restaurent"></textarea> -->
+                <button class="btn btn-success">Add</button>
+            </div>
+        </form>
+    </div>
+
+    <h1 style="text-align: center"> List of Restaurents</h1>
+    <div class="container">
+        <table class="table">
+            <thead class="thead-dark">
+                <th><strong>Name</strong></th>
+                <th><strong>Location</strong></th>
+                <th><strong>Price-Range</strong></th>
+                <th><strong>Reviews</strong></th>
+                <th><strong>Edit</strong></th>
+                <th><strong>Delete</strong></th>
+            </thead>
+            <% for(let i=0;i<restaurents.length;i++){ %>
+                <tbody>
+                    <tr>
+                        <td><strong><%= restaurents[i].name %></strong></td>
+                        <td><strong><%= restaurents[i].location %></strong></td>
+                        <td>
+                            <%= restaurents[i].price_range %>
+                        </td>
+                        <td>
+                            <form action="/api/restaurents/<%= restaurents[i].id%>" method="GET">
+                                <button class="btn btn-success">Review</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="/api/restaurents/<%= restaurents[i].id%>/edit" method="GET">
+                                <button class="btn btn-warning">EDIT</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="/api/restaurents/<%= restaurents[i].id%>?_method=DELETE" method="POST">
+                                <button class="btn btn-danger">DELETE</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+                <% } %>
+        </table>
+    </div>
     <%- include("partials/footer") %>

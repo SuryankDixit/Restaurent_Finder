@@ -1,0 +1,20 @@
+<%- include("partials/header") %>
+    <div class="container">
+        <div class="row">
+
+            <div style="width: 30%; margin: 25px auto;">
+                <h1 style="text-align: center"> Update Record</h1>
+                <form action="/api/restaurents/<%= restaurent.id %>?_method=PUT" method="POST">
+                    <label><strong>Update Name</strong></label>
+                    <input class="form-control " type="text " name="restro[name] " value="<%=restaurent.name %>">
+                    <label><strong>Update Location</strong></label>
+                    <input class="form-control" type="text" name="restro[location]" value="<%=restaurent.location %>">
+                    <label><strong>Update Price Range</strong></label>
+                    <input class="form-control" type="text" name="restro[price]" value="<%= restaurent.price_range %>">
+                    <button class="btn btn-success">EDIT</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <%- include("partials/footer") %>

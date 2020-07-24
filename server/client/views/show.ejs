@@ -1,0 +1,43 @@
+<%- include("partials/header") %>
+    <h1 style="text-align: center">
+        <%= details.restaurent[0].name %>
+    </h1>
+
+    <h3 style="text-align: center"> List of Reviews</h3>
+    <div class="container">
+        <table class="table">
+            <thead class="thead-dark">
+                <th><strong>User-Name</strong></th>
+                <th><strong>Reviews</strong></th>
+                <th><strong>Ratings</strong></th>
+            </thead>
+            <% for(let i=0;i<details.review.length;i++){ %>
+                <tbody>
+                    <tr>
+                        <td><strong><%= details.review[i].name %></strong></td>
+                        <td><strong><%= details.review[i].review %></strong></td>
+                        <td>
+                            <%= details.review[i].rating+"/5" %>
+                        </td>
+                    </tr>
+                </tbody>
+                <% } %>
+        </table>
+    </div>
+
+    <h1 style="text-align: center"> Input Review </h1>
+    <div style="text-align: center">
+
+        <form action="/api/restaurents/<%= details.restaurent[0].id%>/reviews" method="POST">
+            <div>
+                <input type="text" name="review[name]" placeholder="Your Name">
+                <input type="text" name="review[rating]" placeholder="Rating out of 5">
+                <!-- <input type="text" name="review[review]" placeholder="Price Range"> -->
+                <textarea class="form-control" rows="4" name="review[review]" placeholder="Add Review"></textarea>
+                <!-- <textarea class="form-control" cols="100" name="restro[location]" placeholder="Add Restaurent"></textarea>
+                <textarea class="form-control" cols="100" name="restro[price]" placeholder="Add Restaurent"></textarea>  -->
+                <button class="btn btn-success">Add Review</button>
+            </div>
+        </form>
+    </div>
+    <%- include("partials/footer") %>
